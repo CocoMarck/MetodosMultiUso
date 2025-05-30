@@ -8,6 +8,6 @@ La estructura de las funciones, tiene la intención de ser modular y que se pued
 
 ### Ejemplos de uso
 ```csharp
-string sistemaOperativo = SystemUtil.getSystem();
-Console.WriteLine( $"Estás usando: {sistemaOperativo}" );
+string sistema_pperativo = SystemUtil.getSystem();
+Console.WriteLine( $"Estás usando: {sistema_operativo}" );
 ```
