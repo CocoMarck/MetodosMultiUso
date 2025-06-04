@@ -4,10 +4,8 @@ using System.Text;
 using System.Diagnostics; // Para ejecutar comandos
 
 
-/*
-mcs -out:SystemUtil.exe SystemUtil.cs
-mono SystemUtil.exe 
-*/
+
+
 namespace MetodosMultiUso.Core
 {
 
@@ -33,10 +31,55 @@ namespace MetodosMultiUso.Core
         
         
         
-        
-        public static bool runCommand(string command=null) {
-            // ...
-            return true;
+        /// Función para ejecutar comando. Devuelve output del comando.
+        public static string runCommand(
+            string command=null, bool shell_execute=true, bool external=false
+        ){
+            // Determinar si hacer que ProcessStartInfo devuelva o no la salida del comando.
+            // Si no devuelve salida, el resultado se ve en la terminal.
+            bool redirect_standard_output = true;
+            bool redirect_standard_error = true;
+            if ( shell_execute == true ) {
+                redirect_standard_output = false;
+                redirect_standard_error = false;
+            }
+
+            // Ejecutar comando
+            ProcessStartInfo startInfo = new ProcessStartInfo() {
+                Arguments = "-c \" " + command + " \"",
+                UseShellExecute = shell_execute,
+                RedirectStandardOutput = redirect_standard_output,
+                RedirectStandardError = redirect_standard_error,
+                CreateNoWindow = true    
+            };
+            
+            if ( getSystem() == "win" ) {
+                startInfo.FileName = "cmd.exe";
+            } else {
+                startInfo.FileName = "/bin/bash";
+            }
+
+            Process process = new Process() { StartInfo=startInfo };
+            process.Start();
+
+            // Obtener o no la salida del comando | String a devolver
+            string output = command;
+            if ( shell_execute == false ) {
+                // Se supone que StandardOutput.ReadToEnd(), siempre devuelve string.
+                try {
+                    output = $"{process.StandardOutput.ReadToEnd()}";
+                }
+                catch (Exception e) {
+                    output = $"ERROR:\n{e}";
+                }
+            }
+            
+            // Salir del proceso, asegurando que se libere la memoria correctamente.
+            process.WaitForExit();
+            process.Close();
+            
+            // Devolver un string
+            return output;
         }
         
         
@@ -50,9 +93,9 @@ namespace MetodosMultiUso.Core
         /// <returns>null</returns>
         public static void cleanScreen() {
             if ( getSystem() == "win" ) {
-                Process.Start( "cls" );
+                runCommand( "cls" );
             } else {
-                Process.Start( "clear" );
+                runCommand( "clear" );
             }
         }
     }

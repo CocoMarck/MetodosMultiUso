@@ -12,6 +12,7 @@ Usar docfx para documentar todo todito.
 // En SystemUtil.cs
 namespace MetodosMultiUso.Core {
 
+    /// Esta clase es para mostrar texto en terminal. El estilo del texto sera tipo Markdown
     public static class ShowPrint {
         // Constantes de la clase
         private const bool DEFAULT_CONSOLE = true;
@@ -55,6 +56,20 @@ namespace MetodosMultiUso.Core {
         
         
         
+        
+        /// <summary>
+        /// Este método es para obetner info del usuario por consola.
+        /// </summary>
+        /// <param name="text">Texto a mostrar</param>
+        public static string input( string text="texto", string type="string" ) {
+            Console.Write( text );
+            string input_value = Console.ReadLine();
+            return input_value;
+        }
+        
+        
+        
+        
         /// <summary>
         /// Este método determina si se desea continuar o no. Se usa un clasico "Input de Consola"
         /// </summary>
@@ -82,8 +97,7 @@ namespace MetodosMultiUso.Core {
             // Bucle | Retornar true o false
             while (true) {
                 // Input
-                Console.Write( $"{text} ({yn[0]}/{yn[1]}): " );
-                option = Console.ReadLine()?.ToLower().Trim();
+                option = input($"{text} ({yn[0]}/{yn[1]}): ")?.ToLower().Trim();
                 
                 // Parar o no bucle | Retornar true o false
                 if (option == yn[0]){
@@ -133,6 +147,17 @@ namespace MetodosMultiUso.Core {
             
             // Retornar texto
             return text_return;
+        }
+        
+        
+        
+        public static string boxText( 
+            string text="echo", string text_type="bash", bool console=DEFAULT_CONSOLE 
+        ) {
+            string final_text = $"\n```{text_type}\n{text}\n```\n";
+            if (console == true) { Console.Write(final_text); }
+
+            return final_text;
         }
 
     }
