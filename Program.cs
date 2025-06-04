@@ -9,7 +9,7 @@ mono Program.exe
 public static class Program {
     static void Main() {
         // cleanScreen | title | separator
-        Console.Clear(); // SystemUtil.cleanScreen();
+        SystemUtil.cleanScreen(); // Console.Clear()
         ShowPrint.title( text: "Probando todos los modulos", console: true );
         Console.WriteLine( 
             "Aca veremos como se usan los modulos locos, por ejemplo, ve como jala " +
@@ -18,16 +18,14 @@ public static class Program {
 
         bool go = ShowPrint.inputContinue( message_error: true );
         if (go == true) {
-            Console.WriteLine( "Continuamos...");
+            Console.WriteLine( "Continuamos..." );
         }
         else {
-            Console.WriteLine( "Igualmente vamos a continuar...");
+            Console.WriteLine( "Igualmente vamos a continuar..." );
         }
         
         ShowPrint.separator( console: true );
         
-
-
 
         // Usando "title"
         ShowPrint.title( "Como se muestra por defecto ShowPrint.title", console: true );
@@ -49,13 +47,32 @@ public static class Program {
             
             "Bueno, ahora veremos como funcan otras funciones/metodos."
         );
-        Console.Write( "Preciona enter para continuar..." );
-        Console.ReadLine();
+        ShowPrint.input( "Preciona enter para continuar..." );
+        
+        ShowPrint.separator();
         
         
-        // ...
+        // Usando ShowPrint.boxText
+        ShowPrint.title( "Usando ShowPrint.boxText" );
+        ShowPrint.boxText( );
+
+        Console.Write(
+            ShowPrint.boxText( "print('Hello world')", "python", false )
+        );
+
+        ShowPrint.boxText( 
+            "ShowPrint.boxText( string text, string text_type, bool console );",
+            "csharp"
+        );
+
+        ShowPrint.input( "Preciona enter para continuar..." );
+        
+        
+
+
+        // Usando SystemUtil
         //ShowPrint.separator(console: true);
-        Console.Clear(); //SystemUtil.cleanScreen();
+        SystemUtil.cleanScreen(); //Console.Clear(); 
         
         ShowPrint.title( "Usando `SystemUtil`", console:true );
         Console.WriteLine(
