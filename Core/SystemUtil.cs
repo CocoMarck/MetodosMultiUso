@@ -34,26 +34,43 @@ namespace MetodosMultiUso.Core
         /// Función para ejecutar comando. Devuelve output del comando.
         public static string runCommand(
             string command=null, bool shell_execute=true, bool external=false
-        ){
-            // Determinar si hacer que ProcessStartInfo devuelva o no la salida del comando.
+        ){  
+            string current_os = getSystem();
+
+            // Determinar argumentos (comando de ejcución)         
+            if ( external == true ) {
+                shell_execute = false;
+
+                if ( current_os == "win" ) {
+                    command = $"cmd.exe /K {command}";
+                } else {
+                    command = $"x-terminal-emulator -e bash -c '{command}'";
+                }
+            }
+            string arguments = "-c \" " + command + " \"";
+            
+            
+            // Determinar si hacer que ProcessStartInfo devuelve o no la salida del comando.
             // Si no devuelve salida, el resultado se ve en la terminal.
             bool redirect_standard_output = true;
             bool redirect_standard_error = true;
             if ( shell_execute == true ) {
+                // Evita que se se ejecute en segundo plano.
                 redirect_standard_output = false;
                 redirect_standard_error = false;
             }
-
+            
+            
             // Ejecutar comando
             ProcessStartInfo startInfo = new ProcessStartInfo() {
-                Arguments = "-c \" " + command + " \"",
+                Arguments = arguments,
                 UseShellExecute = shell_execute,
                 RedirectStandardOutput = redirect_standard_output,
                 RedirectStandardError = redirect_standard_error,
-                CreateNoWindow = true    
+                CreateNoWindow = true
             };
             
-            if ( getSystem() == "win" ) {
+            if ( current_os == "win" ) {
                 startInfo.FileName = "cmd.exe";
             } else {
                 startInfo.FileName = "/bin/bash";
@@ -61,7 +78,8 @@ namespace MetodosMultiUso.Core
 
             Process process = new Process() { StartInfo=startInfo };
             process.Start();
-
+            
+            
             // Obtener o no la salida del comando | String a devolver
             string output = command;
             if ( shell_execute == false ) {
@@ -74,9 +92,11 @@ namespace MetodosMultiUso.Core
                 }
             }
             
+            
             // Salir del proceso, asegurando que se libere la memoria correctamente.
             process.WaitForExit();
             process.Close();
+            
             
             // Devolver un string
             return output;
