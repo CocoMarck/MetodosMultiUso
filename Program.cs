@@ -86,6 +86,9 @@ public static class Program {
         );
         SystemUtil.runCommand( command:"neofetch", external:true );
         
-        Console.Write( SystemUtil.commandOutput( "echo $HOME" ) );
+        Console.Write( "$HOME es: " + SystemUtil.commandOutput( "echo $HOME" ) );
+        
+        int[] display = SystemUtil.getDisplayResolution();
+        Console.WriteLine( $"La resolucion de pantalla es: {display[0]}x{display[1]}" );
     }
 }

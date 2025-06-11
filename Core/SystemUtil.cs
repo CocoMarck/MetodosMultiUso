@@ -30,6 +30,37 @@ namespace MetodosMultiUso.Core
         }
         
         
+        /// <summary>
+        /// Limpea la pantalla.
+        /// Esta funcion se hace por los loles, porque ya existe Console.Clear(), y hace lo mismo.
+        /// Si es windows se ejecuta el comando "cls", y es otro os el comando "clear". Supone que es tipo UNIX
+        /// </summary>
+        /// <returns>null</returns>
+        public static void cleanScreen() {
+            string get_system = getSystem();
+            if ( get_system == "win" ) {
+                runCommand( "cls" );
+            } else if ( get_system == "linux" || get_system == "mac" ) {
+                runCommand( "clear" );
+            }
+        }
+        
+        
+        
+
+        // Determinar donde ejecutar comandos
+        public static string getShellName() {
+            string get_system = getSystem();
+            string shell_name = "";
+            if ( get_system == "win" ) {
+                shell_name = "cmd.exe";
+            } else if ( get_system == "linux" ) {
+                shell_name = "/bin/bash";
+            }
+            
+            return shell_name;
+        }
+        
         
         /// Función para ejecutar comando. Devuelve output del comando.
         public static string runCommand(
@@ -76,11 +107,7 @@ namespace MetodosMultiUso.Core
                 CreateNoWindow = true
             };
             
-            if ( current_os == "win" ) {
-                startInfo.FileName = "cmd.exe";
-            } else {
-                startInfo.FileName = "/bin/bash";
-            }
+            startInfo.FileName = getShellName();
 
             Process process = new Process() { StartInfo=startInfo };
             process.Start();
@@ -110,7 +137,9 @@ namespace MetodosMultiUso.Core
         
         
         
-
+        
+        /// <summary>Obtener salida (puro string) de comando ejecutado</summary>
+        /// <returns>string</returns>
         public static string commandOutput( string command=null ) {
             string arguments = "-c \" " + command + " \"";
             Process process = new Process();
@@ -118,11 +147,7 @@ namespace MetodosMultiUso.Core
             process.StartInfo.UseShellExecute = false;
             process.StartInfo.RedirectStandardOutput = true;
             
-           if ( getSystem() == "win" ) {
-                process.StartInfo.FileName = "cmd.exe";
-            } else {
-                process.StartInfo.FileName = "/bin/bash";
-            }
+            process.StartInfo.FileName = getShellName();
             process.Start();
             
             string output = process.StandardOutput.ReadToEnd();
@@ -132,20 +157,41 @@ namespace MetodosMultiUso.Core
         
         
         
-        
-        /// <summary>
-        /// Limpea la pantalla.
-        /// Esta funcion se hace por los loles, porque ya existe Console.Clear(), y hace lo mismo.
-        /// Si es windows se ejecuta el comando "cls", y es otro os el comando "clear". Supone que es tipo UNIX
-        /// </summary>
-        /// <returns>null</returns>
-        public static void cleanScreen() {
-            if ( getSystem() == "win" ) {
-                runCommand( "cls" );
-            } else {
-                runCommand( "clear" );
+        /// Obtener resolución de pantalla actual en el OS
+        public static int[] getDisplayResolution() {
+            int[] width_height = {0,0};
+
+            string get_system = getSystem();
+            string character_separator = "x";
+            string output = "";
+
+            if (  get_system == "win" ) {
+                // Usar wnic
+                output = commandOutput( "wmic desktopmonitor get screenwidth, screenheight");
+                character_separator = " ";
+                Console.WriteLine( output );
+            } 
+            else if ( get_system == "linux" ) {
+                // Actualmente nomas jala para x11. 
+                // Despues crear func para detectar si se usa Wayland.
+                output = commandOutput( "xrandr | grep '*' | awk '{print $1}'" );
+                
+                // Determinar que el output no ta vacio, y que contiene el caracter "x"
+                character_separator = "x";
+                
+
+                // Separar valores ancho y largo, convertirlos de string a int, y ponerlos.
+                if ( !string.IsNullOrEmpty(output) && output.Contains(character_separator) ) {
+                    string[] parts = output.Split(character_separator);
+                    width_height[0] = int.Parse(parts[0]);
+                    width_height[1] = int.Parse(parts[1]);
+                }
             }
+            
+            // Retorno
+            return width_height;
         }
+    
     }
 
 }
