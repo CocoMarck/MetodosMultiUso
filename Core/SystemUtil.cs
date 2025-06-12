@@ -8,6 +8,11 @@ using System.Diagnostics; // Para ejecutar comandos
 
 namespace MetodosMultiUso.Core
 {
+    // 🔹 Solo importar `user32.dll` en Windows
+    #if WINDOWS
+    [DllImport("user32.dll")]
+    public static extern int GetSystemMetrics(int nIndex);
+    #endif
 
     public static class SystemUtil {
         /// <summary>
@@ -19,15 +24,22 @@ namespace MetodosMultiUso.Core
             if ( RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ) {
                 os = "win";
             }
+            else {
+                os = "linux";
+            }
+            /*
             else if ( RuntimeInformation.IsOSPlatform(OSPlatform.Linux) ) {
                 os = "linux";
             }
             else if ( RuntimeInformation.IsOSPlatform(OSPlatform.OSX) ) {
                 os = "mac";
             }
+            */
             
             return os;
         }
+        
+        
         
         
         /// <summary>
@@ -157,6 +169,20 @@ namespace MetodosMultiUso.Core
         
         
         
+        /// Obtener servidor grafico usado.
+        public static string getGraphicalServer() {
+            if ( getSystem() == "linux"){
+                return commandOutput("echo $XDG_SESSION_TYPE").Trim();
+            }
+            else if ( getSystem() == "win"){
+                return "WDDM";
+            }
+            
+            return "Unknown";
+        }
+        
+        
+        
         /// Obtener resolución de pantalla actual en el OS
         public static int[] getDisplayResolution() {
             int[] width_height = {0,0};
@@ -167,9 +193,13 @@ namespace MetodosMultiUso.Core
 
             if (  get_system == "win" ) {
                 // Usar wnic
-                output = commandOutput( "wmic desktopmonitor get screenwidth, screenheight");
-                character_separator = " ";
-                Console.WriteLine( output );
+                /*
+                output = commandOutput( "wmic desktopmonitor get screenheight, screenweight");
+                */
+                #if WINDOWS
+                width_height[0] = GetSystemMetrics(0);
+                width_height[1] = GetSystemMetrics(1);
+                #endif
             } 
             else if ( get_system == "linux" ) {
                 // Actualmente nomas jala para x11. 

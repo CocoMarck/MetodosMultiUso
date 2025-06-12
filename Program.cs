@@ -90,5 +90,7 @@ public static class Program {
         
         int[] display = SystemUtil.getDisplayResolution();
         Console.WriteLine( $"La resolucion de pantalla es: {display[0]}x{display[1]}" );
+        
+        Console.WriteLine( SystemUtil.getGraphicalServer() );
     }
 }
