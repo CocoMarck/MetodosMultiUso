@@ -175,7 +175,7 @@ namespace MetodosMultiUso.Core
                 return commandOutput("echo $XDG_SESSION_TYPE").Trim();
             }
             else if ( getSystem() == "win"){
-                return "WDDM";
+                return "wddm";
             }
             
             return "Unknown";
@@ -187,21 +187,18 @@ namespace MetodosMultiUso.Core
         public static int[] getDisplayResolution() {
             int[] width_height = {0,0};
 
-            string get_system = getSystem();
+            string graphical_server = getGraphicalServer();
             string character_separator = "x";
             string output = "";
 
-            if (  get_system == "win" ) {
-                // Usar wnic
-                /*
-                output = commandOutput( "wmic desktopmonitor get screenheight, screenweight");
-                */
+            if (  graphical_server == "wddm" ) {
+                // Usar user32.dll
                 #if WINDOWS
                 width_height[0] = GetSystemMetrics(0);
                 width_height[1] = GetSystemMetrics(1);
                 #endif
             } 
-            else if ( get_system == "linux" ) {
+            else if ( graphical_server == "x11" ) {
                 // Actualmente nomas jala para x11. 
                 // Despues crear func para detectar si se usa Wayland.
                 output = commandOutput( "xrandr | grep '*' | awk '{print $1}'" );

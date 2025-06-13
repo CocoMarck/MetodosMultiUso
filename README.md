@@ -11,3 +11,9 @@ La estructura de las funciones, tiene la intención de ser modular y que se pued
 string sistema_operativo = SystemUtil.getSystem();
 Console.WriteLine( $"Estás usando: {sistema_operativo}" );
 ```
+
+
+# Ejecutar programa con `dotnet`
+```bash
+dotnet run
+```
