@@ -71,12 +71,12 @@ public static class Program {
 
 
         // Usando SystemUtil
-        //ShowPrint.separator(console: true);
         SystemUtil.cleanScreen(); //Console.Clear(); 
         
+        string system_name = SystemUtil.getSystem();
         ShowPrint.title( "Usando `SystemUtil`", console:true );
         Console.WriteLine(
-            $"El sistema operativo que estas usando es: {SystemUtil.getSystem()}.\n" +
+            $"El sistema operativo que estas usando es: `{system_name}`.\n" +
             "El metodo que se uso para saber el OS, es `SystemUtil.getSystem`."
         );
         
@@ -86,11 +86,32 @@ public static class Program {
         );
         SystemUtil.runCommand( command:"neofetch", external:true );
         
-        Console.Write( "$HOME es: " + SystemUtil.commandOutput( "echo $HOME" ) );
+        ShowPrint.separator();
         
+        string home_environment_variable = "$HOME";
+        ShowPrint.title( "Mostrar string de comando" );
+        if ( system_name == "win" ) {
+            home_environment_variable = "%%USERPROFILE%%";
+        }
+        Console.Write( 
+            $"`{home_environment_variable}` es: " + SystemUtil.commandOutput( "echo $HOME" ) 
+        );
+        Console.WriteLine();
+        
+        ShowPrint.title( "Mostrar resolución de pantalla" );
         int[] display = SystemUtil.getDisplayResolution();
-        Console.WriteLine( $"La resolucion de pantalla es: {display[0]}x{display[1]}" );
+        Console.WriteLine( 
+            "La resolución de pantalla, indica como se mostraran las imagenes, la cantidad de pixeles " +
+            "que se podran mostrar.\n" +
+            $"La resolucion de pantalla es: {display[0]}x{display[1]}" 
+        );
+        Console.WriteLine();
         
-        Console.WriteLine( SystemUtil.getGraphicalServer() );
+        ShowPrint.title( "Mostrar servidor grafico" );
+        Console.WriteLine( 
+            "El servidor grafico, es el que dibuja todo en pantalla, muy bonito.\n" +
+            $"El servidor grafico es: `{SystemUtil.getGraphicalServer()}`" 
+        );
+        Console.WriteLine();
     }
 }
