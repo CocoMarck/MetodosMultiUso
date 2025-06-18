@@ -76,7 +76,7 @@ namespace MetodosMultiUso.Core
         
         /// Función para ejecutar comando. Devuelve output del comando.
         public static string runCommand(
-            string command=null, bool shell_execute=true, bool external=false
+            string command="", bool shell_execute=true, bool external=false
         ){  
             string current_os = getSystem();
 
@@ -152,7 +152,7 @@ namespace MetodosMultiUso.Core
         
         /// <summary>Obtener salida (puro string) de comando ejecutado</summary>
         /// <returns>string</returns>
-        public static string commandOutput( string command=null ) {
+        public static string commandOutput( string command="" ) {
             string arguments = "-c \" " + command + " \"";
             Process process = new Process();
             process.StartInfo.Arguments = arguments;
@@ -198,7 +198,7 @@ namespace MetodosMultiUso.Core
                 width_height[1] = GetSystemMetrics(1);
                 #endif
             } 
-            else if ( graphical_server == "x11" ) {
+            else if ( graphical_server == "x11") {
                 // Actualmente nomas jala para x11. 
                 // Despues crear func para detectar si se usa Wayland.
                 output = commandOutput( "xrandr | grep '*' | awk '{print $1}'" );

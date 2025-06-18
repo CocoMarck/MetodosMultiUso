@@ -63,7 +63,10 @@ namespace MetodosMultiUso.Core {
         /// <param name="text">Texto a mostrar</param>
         public static string input( string text="texto", string type="string" ) {
             Console.Write( text );
-            string input_value = Console.ReadLine();
+            string? input_value = Console.ReadLine();
+            if (input_value == null) {
+                input_value = "";
+            }
             return input_value;
         }
         
@@ -84,7 +87,7 @@ namespace MetodosMultiUso.Core {
         /// </param>
         /// <returns>bool</returns>
         public static bool inputContinue(
-            string text="¿Continuar?", string[] yn=null, bool message_error=DEFAULT_CONSOLE
+            string text="¿Continuar?", string[]? yn=null, bool message_error=DEFAULT_CONSOLE
         ) {
             // Establecer valor default de "y" "n"
             if (yn == null) {
@@ -92,7 +95,7 @@ namespace MetodosMultiUso.Core {
             }
             
             // Declarar opcion selecionada
-            string option = null;
+            string? option = null;
             
             // Bucle | Retornar true o false
             while (true) {
@@ -171,7 +174,7 @@ namespace MetodosMultiUso.Core {
         /// </summary>
         /// <returns>string</returns>
         public static string codeText( 
-            string text="Nothing", string text_type=null, bool console=DEFAULT_CONSOLE 
+            string text="Nothing", string? text_type=null, bool console=DEFAULT_CONSOLE 
         ) {
             // Establecer que tipo de caja de código sera
             string character = "```";

@@ -44,7 +44,7 @@ Resources/
     Video/
     Icons/
 
-Notas/
+Docs/
     # Notas de todo tipo MD, txt, pdf. No esperar mucho orden logico.
     Estructuras/
     Ejemplos/

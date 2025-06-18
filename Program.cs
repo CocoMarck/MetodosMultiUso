@@ -1,5 +1,6 @@
 using System;
 using MetodosMultiUso.Core;
+using MetodosMultiUso.Utils;
 
 /*
 mcs -out:Program.exe Program.cs Core/SystemUtil.cs Core/ShowPrint.cs
@@ -8,8 +9,21 @@ mono Program.exe
 
 public static class Program {
     static void Main() {
+        ShowPrint.input( "Primero que nada ve los warnings (Si es que hay)");
+    
         // cleanScreen | title | separator
         SystemUtil.cleanScreen(); // Console.Clear()
+
+        ResourceLoader resource_loader = new ResourceLoader();
+        Console.WriteLine( 
+            $"{resource_loader.base_dir}\n{resource_loader.config_dir}\n{resource_loader.resource_dir}\n" +
+            $""
+        );
+        Console.WriteLine( resource_loader.getPathType("./Core") );
+        Console.WriteLine(
+            resource_loader.restrictiveCombineFile( resource_loader.base_dir, "Program.cs" )
+        );
+
         ShowPrint.title( text: "Probando todos los modulos", console: true );
         Console.WriteLine( 
             "Aca veremos como se usan los modulos locos, por ejemplo, ve como jala " +
