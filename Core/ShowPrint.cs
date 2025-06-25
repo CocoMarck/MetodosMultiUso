@@ -189,7 +189,17 @@ namespace MetodosMultiUso.Core {
 
             return final_text;
         }
+        
+
+
+
+        /// <sumary>Mostrar y devolver texto<sumary>
+        public static string printAndReturn( string text="", bool console=DEFAULT_CONSOLE){
+            if ( console ){
+                Console.WriteLine( text );
+            }
+            return text + "\n";
+        }
 
     }
-
 }

@@ -1,5 +1,6 @@
 using System;
 using MetodosMultiUso.Core;
+using MetodosMultiUso.Core.Config;
 using MetodosMultiUso.Utils;
 
 /*
@@ -13,7 +14,13 @@ public static class Program {
     
         // cleanScreen | title | separator
         SystemUtil.cleanScreen(); // Console.Clear()
+        
+        // SystemUtilConf
+        Console.WriteLine( 
+            SystemUtilConf.getTerminalName()     
+        );
 
+        // Usando resorce loader
         ResourceLoader resource_loader = new ResourceLoader();
         Console.WriteLine( 
             $"{resource_loader.base_dir}\n{resource_loader.config_dir}\n{resource_loader.resource_dir}\n" +
@@ -23,27 +30,45 @@ public static class Program {
         Console.WriteLine(
             resource_loader.restrictiveCombineFile( resource_loader.base_dir, "Program.cs" )
         );
+        Console.WriteLine(
+            Path.Combine( resource_loader.config_dir, "runCommand.ini" )
+        );
+        
+        
+        
+        
+        // log text archivo log
+        string log_file_path = resource_loader.combineLogFile( "log.md" );
+        string log_text = "";
+        
+        
+        
+        
+        // ShowPrint
+        log_text += ShowPrint.printAndReturn(
+            ShowPrint.title( text: "Probando todos los modulos", console: false ) + "\n" +
 
-        ShowPrint.title( text: "Probando todos los modulos", console: true );
-        Console.WriteLine( 
             "Aca veremos como se usan los modulos locos, por ejemplo, ve como jala " +
             "`ShowPrint.inputContinue`:"
         );
 
         bool go = ShowPrint.inputContinue( message_error: true );
         if (go == true) {
-            Console.WriteLine( "Continuamos..." );
+            log_text += ShowPrint.printAndReturn( "Continuamos..." );
         }
         else {
-            Console.WriteLine( "Igualmente vamos a continuar..." );
+            log_text += ShowPrint.printAndReturn( "Igualmente vamos a continuar..." );
         }
         
-        ShowPrint.separator( console: true );
+        log_text += ShowPrint.printAndReturn( ShowPrint.separator(), console:false );
         
 
         // Usando "title"
-        ShowPrint.title( "Como se muestra por defecto ShowPrint.title", console: true );
-        Console.WriteLine( 
+        log_text += ShowPrint.printAndReturn( 
+            ShowPrint.title( "Como se muestra por defecto `ShowPrint.title`" ), console:false
+        );
+
+        log_text += ShowPrint.printAndReturn(
             "Por defecto el metodo `title`, se muestra asi:\n    " +
             ShowPrint.title( console: false ) + "\n" +
             
@@ -54,7 +79,7 @@ public static class Program {
             ) + "\n\n" +
             
             "No te dites cuenta pero ya se esta usando otro metodo, se llama `ShowPrint.separator` " +
-            "este sirve para mostrar dar sparaciones visuales, mira esta sparación, " +
+            "este sirve para mostrar sparaciones visuales, mira esta sparación, " +
             "usando el caracter `^`(con 100 de estos caracteres):\n" +
             
             ShowPrint.separator( character: "^", number: 100, console:false ) + 
@@ -62,21 +87,24 @@ public static class Program {
             "Bueno, ahora veremos como funcan otras funciones/metodos."
         );
         ShowPrint.input( "Preciona enter para continuar..." );
+        log_text += ShowPrint.printAndReturn( ShowPrint.separator(), console:false );
         
-        ShowPrint.separator();
+        
         
         
         // Usando ShowPrint.codeText
-        ShowPrint.title( "Usando ShowPrint.codeText" );
-        ShowPrint.codeText( );
+        log_text += ShowPrint.printAndReturn( ShowPrint.title("Usando ShowPrint.codeText"), console:false );
+        log_text += ShowPrint.printAndReturn( ShowPrint.codeText(), console:false);
 
-        Console.Write(
+        log_text += ShowPrint.printAndReturn(
             ShowPrint.codeText( "print('Hello world')", "python", false )
         );
 
-        ShowPrint.codeText( 
-            "ShowPrint.codeText( string text, string text_type, bool console );",
-            "csharp"
+        log_text += ShowPrint.printAndReturn( 
+            ShowPrint.codeText( 
+                "ShowPrint.codeText( string text, string text_type, bool console );",
+                "csharp"
+            ), console:false
         );
 
         ShowPrint.input( "Preciona enter para continuar..." );
@@ -88,8 +116,9 @@ public static class Program {
         SystemUtil.cleanScreen(); //Console.Clear(); 
         
         string system_name = SystemUtil.getSystem();
-        ShowPrint.title( "Usando `SystemUtil`", console:true );
-        Console.WriteLine(
+        log_text += ShowPrint.printAndReturn(
+            ShowPrint.title( "Usando `SystemUtil`", console:false ) + "\n" +
+          
             $"El sistema operativo que estas usando es: `{system_name}`.\n" +
             "El metodo que se uso para saber el OS, es `SystemUtil.getSystem`."
         );
@@ -98,34 +127,48 @@ public static class Program {
             "Ahora vamos a abrir una terminal\n"  +
             "Preciona enter para ver la terminal..."
         );
-        SystemUtil.runCommand( command:"neofetch", external:true );
+        log_text += ShowPrint.printAndReturn(
+            SystemUtil.runCommand( command:"neofetch", external:true ), console:false
+        );
         
-        ShowPrint.separator();
+        log_text += ShowPrint.printAndReturn( ShowPrint.separator(), console:false );
         
         string home_environment_variable = "$HOME";
-        ShowPrint.title( "Mostrar string de comando" );
+        log_text += ShowPrint.printAndReturn(
+            ShowPrint.title( "Mostrar string de comando", console:false ) 
+        );
         if ( system_name == "win" ) {
             home_environment_variable = "%%USERPROFILE%%";
         }
-        Console.Write( 
+        log_text += ShowPrint.printAndReturn(
             $"`{home_environment_variable}` es: " + SystemUtil.commandOutput( "echo $HOME" ) 
         );
-        Console.WriteLine();
+        log_text += ShowPrint.printAndReturn();
         
-        ShowPrint.title( "Mostrar resolución de pantalla" );
+        log_text += ShowPrint.printAndReturn( 
+            ShowPrint.title( "Mostrar resolución de pantalla" ), false 
+        );
         int[] display = SystemUtil.getDisplayResolution();
-        Console.WriteLine( 
+        log_text += ShowPrint.printAndReturn(
             "La resolución de pantalla, indica como se mostraran las imagenes, la cantidad de pixeles " +
             "que se podran mostrar.\n" +
             $"La resolucion de pantalla es: {display[0]}x{display[1]}" 
         );
-        Console.WriteLine();
+        log_text += ShowPrint.printAndReturn();
         
-        ShowPrint.title( "Mostrar servidor grafico" );
-        Console.WriteLine( 
+        log_text += ShowPrint.printAndReturn( 
+            ShowPrint.title( "Mostrar servidor grafico" ), false 
+        );
+        log_text += ShowPrint.printAndReturn(
             "El servidor grafico, es el que dibuja todo en pantalla, muy bonito.\n" +
             $"El servidor grafico es: `{SystemUtil.getGraphicalServer()}`" 
         );
-        Console.WriteLine();
+        log_text += ShowPrint.printAndReturn();
+        
+        
+        
+        
+        // log text, guardar
+        File.WriteAllText( log_file_path, log_text );
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Runtime.InteropServices; // Para getSystem()
 using System.Text;
 using System.Diagnostics; // Para ejecutar comandos
+using MetodosMultiUso.Core.Config;
 
 
 
@@ -15,6 +16,11 @@ namespace MetodosMultiUso.Core
     #endif
 
     public static class SystemUtil {
+        // Constantes
+        private static readonly string TERMINAL_NAME = SystemUtilConf.getTerminalName();
+        
+        
+        
         /// <summary>
         /// Devuelve un string que indica el Sistema Operativo usado.
         /// </summary>
@@ -85,10 +91,10 @@ namespace MetodosMultiUso.Core
                 shell_execute = false;
 
                 if ( current_os == "win" ) {
-                    command = $"cmd.exe /K {command} & pause";
+                    command = $"{TERMINAL_NAME} /K {command} & pause";
                 } else {
                     command = (
-                        "x-terminal-emulator -hold -e bash -c " +
+                        $"{TERMINAL_NAME} -hold -e bash -c " +
                         $"'{command}; read; exit'"
                     );
                 }

@@ -46,11 +46,11 @@ namespace MetodosMultiUso.Utils {
             return ( getPathType(path:path) is string );
         }
         
-        public bool resourceExists() {
+        public bool existsResource() {
             return Directory.Exists(resource_dir);
         }
         
-        public bool configExists() {
+        public bool existsConfig() {
             return Directory.Exists(config_dir);
         }
 
@@ -70,9 +70,17 @@ namespace MetodosMultiUso.Utils {
         }
 
         // Combinar `Dir`, con `File` o `Dir`. Lo generado, no necesariamente tiene que exister.
-        public string? combineFileResource(string file) {
+        public string? combineResourceFile(string file) {
             return Path.Combine( resource_dir, file );
-        }   
+        } 
+        
+        public string? combineConfigFile(string file) {
+            return Path.Combine( config_dir, file );
+        }
+        
+        public string? combineLogFile(string file) {
+            return Path.Combine( logs_dir, file );
+        }
         /*
         */
     }
