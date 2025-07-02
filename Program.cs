@@ -2,6 +2,7 @@ using System;
 using MetodosMultiUso.Core;
 using MetodosMultiUso.Core.Config;
 using MetodosMultiUso.Utils;
+using System.Collections.Generic;
 
 /*
 mcs -out:Program.exe Program.cs Core/SystemUtil.cs Core/ShowPrint.cs
@@ -31,8 +32,35 @@ public static class Program {
             resource_loader.restrictiveCombineFile( resource_loader.base_dir, "Program.cs" )
         );
         Console.WriteLine(
-            Path.Combine( resource_loader.config_dir, "runCommand.ini" )
+            Path.Combine( resource_loader.config_dir, "runCommand.conf" )
         );
+        Console.WriteLine("\n\n");
+        
+        
+        // Usando TextUtil `readText`
+        string[] run_command_array = (string[])TextUtil.readTextFile( 
+            file: SystemUtilConf.PATH_RUN_COMMAND, return_type:"array"
+        );
+        foreach (string line in run_command_array) {
+            Console.WriteLine( line );
+        }
+        Console.WriteLine("\n\n");
+        
+        List<string> run_command_list = (List<string>)TextUtil.readTextFile( 
+            file: SystemUtilConf.PATH_RUN_COMMAND, return_type:"list"
+        );
+        foreach (string line in run_command_list) {
+            Console.WriteLine( line );
+        }
+        Console.WriteLine("\n\n");
+        
+        Dictionary<int, string> run_command_dict = (Dictionary<int, string>)TextUtil.readTextFile(
+            file: SystemUtilConf.PATH_RUN_COMMAND, return_type:"dictionary"
+        );
+        foreach (var element in run_command_dict) {
+            Console.WriteLine($"{element.Key}. {element.Value}");
+        }
+        Console.WriteLine("\n\n");
         
         
         

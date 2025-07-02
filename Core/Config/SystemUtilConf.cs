@@ -14,7 +14,7 @@ namespace MetodosMultiUso.Core.Config {
         // Constantes
         private const string NAME_RUN_COMMAND = "runCommand";
         private const string FILE_RUN_COMMAND = $"{NAME_RUN_COMMAND}.conf";
-        private static readonly string PATH_RUN_COMMAND;
+        public static readonly string PATH_RUN_COMMAND;
         private const string WIN_TERMINAL = "cmd.exe";
         private const string LINUX_TERMINAL = "x-terminal-emulator";
     

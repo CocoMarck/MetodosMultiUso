@@ -1,6 +1,6 @@
 #    Probando todos los modulos    #
 Aca veremos como se usan los modulos locos, por ejemplo, ve como jala `ShowPrint.inputContinue`:
-Igualmente vamos a continuar...
+Continuamos...
 
 
 --------------------------------------------------------------------------------------------------------------------------------
