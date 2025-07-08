@@ -37,32 +37,6 @@ public static class Program {
         Console.WriteLine("\n\n");
         
         
-        // Usando TextUtil `readText`
-        string[] run_command_array = (string[])TextUtil.readTextFile( 
-            file: SystemUtilConf.PATH_RUN_COMMAND, return_type:"array"
-        );
-        foreach (string line in run_command_array) {
-            Console.WriteLine( line );
-        }
-        Console.WriteLine("\n\n");
-        
-        List<string> run_command_list = (List<string>)TextUtil.readTextFile( 
-            file: SystemUtilConf.PATH_RUN_COMMAND, return_type:"list"
-        );
-        foreach (string line in run_command_list) {
-            Console.WriteLine( line );
-        }
-        Console.WriteLine("\n\n");
-        
-        Dictionary<int, string> run_command_dict = (Dictionary<int, string>)TextUtil.readTextFile(
-            file: SystemUtilConf.PATH_RUN_COMMAND, return_type:"dictionary"
-        );
-        foreach (var element in run_command_dict) {
-            Console.WriteLine($"{element.Key}. {element.Value}");
-        }
-        Console.WriteLine("\n\n");
-        
-        
         
         
         // log text archivo log
@@ -191,7 +165,48 @@ public static class Program {
             "El servidor grafico, es el que dibuja todo en pantalla, muy bonito.\n" +
             $"El servidor grafico es: `{SystemUtil.getGraphicalServer()}`" 
         );
-        log_text += ShowPrint.printAndReturn();
+        log_text += ShowPrint.printAndReturn( ShowPrint.separator(console:false) );
+        
+        
+        
+        
+        // Usando TextUtil `readText`
+        log_text += ShowPrint.printAndReturn( ShowPrint.title("`TextUtil.readText`"), console:false );
+        log_text += ShowPrint.printAndReturn("array:");
+        string[] run_command_array = (string[])TextUtil.readTextFile( 
+            file: SystemUtilConf.PATH_RUN_COMMAND, return_type:"array"
+        );
+        foreach (string line in run_command_array) {
+            log_text += ShowPrint.printAndReturn( line );
+        }
+        log_text += ShowPrint.printAndReturn("\n");
+        
+        
+        log_text += ShowPrint.printAndReturn("list:");
+        List<string> run_command_list = (List<string>)TextUtil.readTextFile( 
+            file: SystemUtilConf.PATH_RUN_COMMAND, return_type:"list"
+        );
+        foreach (string line in run_command_list) {
+            log_text += ShowPrint.printAndReturn(line);
+        }
+        log_text += ShowPrint.printAndReturn("\n");
+        
+        
+        log_text += ShowPrint.printAndReturn("dictionary:");
+        Dictionary<int, string> run_command_dict = (Dictionary<int, string>)TextUtil.readTextFile(
+            file: SystemUtilConf.PATH_RUN_COMMAND, return_type:"dictionary"
+        );
+        foreach (var element in run_command_dict) {
+            log_text += ShowPrint.printAndReturn($"{element.Key}. {element.Value}");
+        }
+        log_text += ShowPrint.printAndReturn("\n");
+        
+        
+        log_text += ShowPrint.printAndReturn( ShowPrint.title("`TextUtil.ignoreComment`"), console:false );
+        log_text += ShowPrint.printAndReturn( TextUtil.ignoreComment() );
+        log_text += ShowPrint.printAndReturn( 
+            TextUtil.ignoreComment( text:"Ejemplo # Comentario\nTexto\n# Chido") 
+        );
         
         
         

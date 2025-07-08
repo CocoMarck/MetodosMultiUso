@@ -1,6 +1,7 @@
 using System.IO;
 using System.Text;
-using System.Collections.Generic;
+using System.Collections.Generic; // Para List y Dict | TextUtil
+using System.Text.RegularExpressions; // Para concidencias en texto | IgnoreComment
 
 /*
 Esta clase servira para obtener información del texto.
@@ -61,8 +62,40 @@ namespace MetodosMultiUso.Core {
             else {
                 return text;
             }
-            
-            
         }
+    
+    
+
+
+    /// Ignorar cometario
+    public static string ignoreComment( string text="Ejemplo # Comentario", string comment="#" ){
+        string text_ready = "";
+        
+        // Cuando son multiples lineas
+        if ( Regex.IsMatch(text, "\n") ) {
+            //Console.WriteLine("Saltos de linea");
+            string[] split_text = text.Split("\n");
+            foreach (string line in split_text){
+                text_ready += ignoreComment( text:line, comment:comment );
+            }
+        }
+        // Cuando es una sola lineas
+        else if ( Regex.IsMatch(text, comment) ){
+            //Console.WriteLine("Una sola linea");
+            string[] split_text = text.Split(comment);
+            text_ready = split_text[0];
+        }
+        else {
+            //Console.WriteLine("Sin comentarios");
+            text_ready = text;
+        }
+        
+        // Se retorna el texto sin comentarios
+        return text_ready;
+    }
+
+
+
+
     }
 }

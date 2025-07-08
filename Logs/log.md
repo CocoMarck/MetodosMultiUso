@@ -60,3 +60,29 @@ La resolucion de pantalla es: 1920x1080
 El servidor grafico, es el que dibuja todo en pantalla, muy bonito.
 El servidor grafico es: `x11`
 
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+
+#    `TextUtil.readText`    #
+array:
+# Aca se determina que terminal por defecto abrir
+linux_terminal=x-terminal-emulator
+win_terminal=cmd.exe
+
+
+list:
+# Aca se determina que terminal por defecto abrir
+linux_terminal=x-terminal-emulator
+win_terminal=cmd.exe
+
+
+dictionary:
+0. # Aca se determina que terminal por defecto abrir
+1. linux_terminal=x-terminal-emulator
+2. win_terminal=cmd.exe
+
+
+#    `TextUtil.ignoreComment`    #
+Ejemplo 
+Ejemplo Texto

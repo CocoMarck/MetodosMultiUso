@@ -29,7 +29,7 @@ namespace MetodosMultiUso.Core.Config {
             // Establecer ruta
             PATH_RUN_COMMAND = resource_loader.combineConfigFile( FILE_RUN_COMMAND );
         
-            //
+            // Escribir texto
             File.WriteAllText( PATH_RUN_COMMAND, DEFAULT_INSTRUCTION );
             string text = File.ReadAllText( PATH_RUN_COMMAND );
             Console.WriteLine( text );
