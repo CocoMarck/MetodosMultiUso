@@ -110,12 +110,12 @@ public static class Program {
         );
 
         ShowPrint.input( "Preciona enter para continuar..." );
+        ShowPrint.printAndReturn("\n\n");
         
         
 
 
         // Usando SystemUtil
-        SystemUtil.cleanScreen(); //Console.Clear(); 
         
         string system_name = SystemUtil.getSystem();
         log_text += ShowPrint.printAndReturn(
@@ -172,13 +172,23 @@ public static class Program {
         
         // Usando TextUtil `readText`
         log_text += ShowPrint.printAndReturn( ShowPrint.title("`TextUtil.readText`"), console:false );
+        
+        log_text += ShowPrint.printAndReturn("text:");
+        string run_command_text = (string)TextUtil.readTextFile( file: SystemUtilConf.PATH_RUN_COMMAND );
+        log_text += ShowPrint.printAndReturn("```");
+        log_text += ShowPrint.printAndReturn( run_command_text);
+        log_text += ShowPrint.printAndReturn("```\n\n");
+        
+        
         log_text += ShowPrint.printAndReturn("array:");
         string[] run_command_array = (string[])TextUtil.readTextFile( 
             file: SystemUtilConf.PATH_RUN_COMMAND, return_type:"array"
         );
+        log_text += ShowPrint.printAndReturn("```");
         foreach (string line in run_command_array) {
             log_text += ShowPrint.printAndReturn( line );
         }
+        log_text += ShowPrint.printAndReturn("```");
         log_text += ShowPrint.printAndReturn("\n");
         
         
@@ -186,9 +196,11 @@ public static class Program {
         List<string> run_command_list = (List<string>)TextUtil.readTextFile( 
             file: SystemUtilConf.PATH_RUN_COMMAND, return_type:"list"
         );
+        log_text += ShowPrint.printAndReturn("```");
         foreach (string line in run_command_list) {
             log_text += ShowPrint.printAndReturn(line);
         }
+        log_text += ShowPrint.printAndReturn("```");
         log_text += ShowPrint.printAndReturn("\n");
         
         
@@ -196,16 +208,21 @@ public static class Program {
         Dictionary<int, string> run_command_dict = (Dictionary<int, string>)TextUtil.readTextFile(
             file: SystemUtilConf.PATH_RUN_COMMAND, return_type:"dictionary"
         );
+        log_text += ShowPrint.printAndReturn("```");
         foreach (var element in run_command_dict) {
             log_text += ShowPrint.printAndReturn($"{element.Key}. {element.Value}");
         }
+        log_text += ShowPrint.printAndReturn("```");
         log_text += ShowPrint.printAndReturn("\n");
         
         
+        // TextUtil.ignoreComment
         log_text += ShowPrint.printAndReturn( ShowPrint.title("`TextUtil.ignoreComment`"), console:false );
-        log_text += ShowPrint.printAndReturn( TextUtil.ignoreComment() );
         log_text += ShowPrint.printAndReturn( 
             TextUtil.ignoreComment( text:"Ejemplo # Comentario\nTexto\n# Chido") 
+        );
+        log_text += ShowPrint.printAndReturn( 
+            TextUtil.ignoreComment( text:run_command_text ) 
         );
         
         

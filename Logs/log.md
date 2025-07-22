@@ -65,24 +65,40 @@ El servidor grafico es: `x11`
 
 
 #    `TextUtil.readText`    #
-array:
+text:
+```
 # Aca se determina que terminal por defecto abrir
 linux_terminal=x-terminal-emulator
 win_terminal=cmd.exe
+```
+
+
+array:
+```
+# Aca se determina que terminal por defecto abrir
+linux_terminal=x-terminal-emulator
+win_terminal=cmd.exe
+```
 
 
 list:
+```
 # Aca se determina que terminal por defecto abrir
 linux_terminal=x-terminal-emulator
 win_terminal=cmd.exe
+```
 
 
 dictionary:
+```
 0. # Aca se determina que terminal por defecto abrir
 1. linux_terminal=x-terminal-emulator
 2. win_terminal=cmd.exe
+```
 
 
 #    `TextUtil.ignoreComment`    #
 Ejemplo 
-Ejemplo Texto
+Texto
+linux_terminal=x-terminal-emulator
+win_terminal=cmd.exe

@@ -68,6 +68,7 @@ namespace MetodosMultiUso.Core {
 
 
     /// Ignorar cometario
+    /// Necesita que el texto si o si sea un string, acepta saltos de linea `/n`
     public static string ignoreComment( string text="Ejemplo # Comentario", string comment="#" ){
         string text_ready = "";
         
@@ -75,9 +76,15 @@ namespace MetodosMultiUso.Core {
         if ( Regex.IsMatch(text, "\n") ) {
             //Console.WriteLine("Saltos de linea");
             string[] split_text = text.Split("\n");
+            string ready_line = "";
             foreach (string line in split_text){
-                text_ready += ignoreComment( text:line, comment:comment );
+                ready_line = ignoreComment( text:line, comment:comment );
+                text_ready += ready_line;
+                if (ready_line != "") {
+                    text_ready += "\n";
+                }
             }
+            text_ready = text_ready.Remove(text_ready.Length -1);
         }
         // Cuando es una sola lineas
         else if ( Regex.IsMatch(text, comment) ){
