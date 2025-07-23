@@ -16,30 +16,11 @@ public static class Program {
         // cleanScreen | title | separator
         SystemUtil.cleanScreen(); // Console.Clear()
         
-        // SystemUtilConf
-        Console.WriteLine( 
-            SystemUtilConf.getTerminalName()     
-        );
-
-        // Usando resorce loader
+        
+        
+        
+        // log text archivo log | ResoourceLoader
         ResourceLoader resource_loader = new ResourceLoader();
-        Console.WriteLine( 
-            $"{resource_loader.base_dir}\n{resource_loader.config_dir}\n{resource_loader.resource_dir}\n" +
-            $""
-        );
-        Console.WriteLine( resource_loader.getPathType("./Core") );
-        Console.WriteLine(
-            resource_loader.restrictiveCombineFile( resource_loader.base_dir, "Program.cs" )
-        );
-        Console.WriteLine(
-            Path.Combine( resource_loader.config_dir, "runCommand.conf" )
-        );
-        Console.WriteLine("\n\n");
-        
-        
-        
-        
-        // log text archivo log
         string log_file_path = resource_loader.combineLogFile( "log.md" );
         string log_text = "";
         
@@ -64,8 +45,43 @@ public static class Program {
         
         log_text += ShowPrint.printAndReturn( ShowPrint.separator(), console:false );
         
+        
+        
+        
+        // SystemUtilConf
+        log_text += ShowPrint.printAndReturn( ShowPrint.title( text:"`SystemUtilConf`", console:false) );
+        log_text += ShowPrint.printAndReturn(
+            $"Terminal a ejecutar: `{SystemUtilConf.getTerminalName()}`"
+        );
+        log_text += ShowPrint.printAndReturn( ShowPrint.separator(console:false) );
+        
+        
+        
+        
+        // Usando resorce loader
+        log_text += ShowPrint.printAndReturn( ShowPrint.title( text:"`ResourceLoader`", console:false) );
+        log_text += ShowPrint.printAndReturn(
+            $"Rutas locas:\n```\n" +
+            $"{resource_loader.base_dir}\n{resource_loader.config_dir}\n{resource_loader.resource_dir}\n" +
+            $"```"
+        );
+        log_text += ShowPrint.printAndReturn(
+            "- Obtener tipo de ruta: " + resource_loader.getPathType("./Core") 
+        );
+        log_text += ShowPrint.printAndReturn(
+            "- Combinación restrictiva: `"+
+            resource_loader.restrictiveCombineFile( resource_loader.base_dir, "Program.cs" ) + "`"
+        );
+        log_text += ShowPrint.printAndReturn(
+            "- Combinación normal: `"+
+            Path.Combine( resource_loader.config_dir, "runCommand.conf" ) + "`"
+        );
+        log_text += ShowPrint.printAndReturn( ShowPrint.separator(console:false) );
+        
 
-        // Usando "title"
+        
+        
+        // Usando ShowPrint "title"
         log_text += ShowPrint.printAndReturn( 
             ShowPrint.title( "Como se muestra por defecto `ShowPrint.title`" ), console:false
         );
