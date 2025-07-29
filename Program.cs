@@ -241,6 +241,18 @@ public static class Program {
             TextUtil.ignoreComment( text:run_command_text ) 
         );
         
+        // TextUtil.matixLineBreaks
+        foreach( string line in TextUtil.matixLineBreaks() ) {
+            ShowPrint.printAndReturn( line );
+        }
+        
+        // TextUtil.separeText
+        foreach( var element in TextUtil.separeText() ) {
+            ShowPrint.printAndReturn( $"Key: {element.Key}. Value: {element.Value}" );
+        }
+        
+        // TextUtil.onlyTheComment
+        ShowPrint.printAndReturn( TextUtil.onlyTheComment("#Comentario# Comentario\nTexto") );
         
         
         

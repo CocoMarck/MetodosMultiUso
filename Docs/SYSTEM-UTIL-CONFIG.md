@@ -32,6 +32,7 @@ terminal_variables.Add( var_value[0], var_value[1]);
 texto = "   linux  "
 texto.Trim() // "linux"
 ```
+[Como usar trim by microsoft](https://learn.microsoft.com/en-us/dotnet/api/system.string.trim?view=net-9.0)
 
 Tambien se puede forzar ponerlo en minusculas:
 ```csharp

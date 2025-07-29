@@ -37,9 +37,14 @@ namespace MetodosMultiUso.Core.Config {
         
         // Funciones
         public static string getTerminalName() {
+            string os = SystemUtil.getSystem();
             string name_to_return = LINUX_TERMINAL;
+            bool default_values = true;
             
+            // Determinar si existe el texto, si existe leer datos.
             if (resource_loader.existsPath(PATH_RUN_COMMAND) == true) {
+                default_values = false;
+                
                 // Leer texto
                 string text_file = TextUtil.ignoreComment(
                     text: (string)TextUtil.readTextFile( file: PATH_RUN_COMMAND, return_type: "text" )
@@ -55,12 +60,16 @@ namespace MetodosMultiUso.Core.Config {
                 }
 
                 // Obtener terminales por medio del archivo de configuracion
-                if ( SystemUtil.getSystem() == "linux" ) 
-                    name_to_return = terminal_variables["linux_terminal"];
-                else if ( SystemUtil.getSystem() == "win" )
-                    name_to_return = terminal_variables["win_terminal"];
-                
-            } else { 
+                string variable_name_in_config = $"{os}_terminal";
+                if ( terminal_variables.ContainsKey( variable_name_in_config ) )
+                    name_to_return = terminal_variables[ variable_name_in_config ];
+                else
+                    default_values = true;
+                    
+            } 
+            
+            // Obtener valores por defecto dependiendo de los procesos anteriores.
+            if (default_values == true) { 
                 // Obtener terminales, pero del modo default
                 if ( SystemUtil.getSystem() == "linux" ) 
                    name_to_return = LINUX_TERMINAL;
