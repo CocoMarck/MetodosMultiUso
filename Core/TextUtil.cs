@@ -18,6 +18,9 @@ Filtrar texto. Solo permitir en el texto caracteres especificados, como:
 */
 namespace MetodosMultiUso.Core {
     public static class TextUtil {
+        // Constantes
+        public const string FILTER_ABC = "abcdefghijklmnñopqrstuvwxyz";
+        public const string FILTER_NUMBER = "1234567890";
 
         // Leer archivo de texto
         // Por defecto solo se devuelve el texto pelon.
@@ -175,6 +178,70 @@ namespace MetodosMultiUso.Core {
             }
             
             return text_ready;
+        }
+        
+        
+        
+        /// Diccionario con texto filtrado
+        // QUE EL KEY SEA UN NUMERO, Y EL VALUE SEAN `char, bool`
+        public static Dictionary<int, (char, bool)> filteredTextDictionary(
+            string text="Hola 2", string filter="123" 
+        ) {
+            Dictionary<int, (char, bool)> dict_text = new Dictionary<int, (char, bool)>();
+            
+            // Recorrer caracteres de string | Bucle uno
+            for( int index=0; index < text.Length; index++ ) {
+                char character = text[index];
+                
+                // Determinar si el string pasa el filtro o no | Bucle dos
+                // Establecer en if, el char en minusculas
+                bool pass = false;
+                for(int index_filter=0; index_filter < filter.Length; index_filter++){
+                    char character_filter = filter[index_filter];
+                    if ( char.ToLower(character) == character_filter) { pass = true; }
+                }
+                dict_text.Add( index, (character, pass) );
+            }
+            
+            return dict_text;
+        }
+        
+        
+        /// Devolver si el texto pasa el filtro
+        public static bool passTextFilter( string text="123133", string filter="123" ){
+            bool pass = true;
+            Dictionary<int, (char, bool)> dict_text = (Dictionary<int, (char, bool)>)filteredTextDictionary(
+                text:text, filter:filter
+            );
+            
+            // Bucle para determinar si algun value es falso, y si lo es romper bucle y pos no pasa el filtro.
+            foreach (var element in dict_text ) {
+                var (character, good_character) = element.Value;
+                if (good_character == false) { 
+                    pass = false; 
+                    break;
+                }
+            }
+            
+            return pass;
+        }
+        
+        /// Ignorar texto que no cumpla el filtro
+        public static string ignoreTextFilter( string text, string filter ) {
+            Dictionary<int,(char, bool)> dict_text = (Dictionary<int,(char, bool)>)filteredTextDictionary(
+                text:text, filter:filter 
+            );
+            string final_text = "";
+            
+            // Bucle para agregar solo el caracteres bonitos. Que pasen el filtro.
+            foreach(var element in dict_text) {
+                var (character, good_character) = element.Value;
+                if (good_character) {
+                    final_text += character.ToString();
+                }
+            }
+            
+            return final_text;
         }
 
     }

@@ -6,6 +6,28 @@ Continuamos...
 --------------------------------------------------------------------------------------------------------------------------------
 
 
+#    `SystemUtilConf`    #
+Terminal a ejecutar: `x-terminal-emulator`
+
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+
+#    `ResourceLoader`    #
+Rutas locas:
+```
+/home/jean_abraham/Proyectos/Programacion/csharp/github-clones/MetodosMultiUso/
+/home/jean_abraham/Proyectos/Programacion/csharp/github-clones/MetodosMultiUso/Config
+/home/jean_abraham/Proyectos/Programacion/csharp/github-clones/MetodosMultiUso/Resources
+```
+- Obtener tipo de ruta: dir
+- Combinación restrictiva: `/home/jean_abraham/Proyectos/Programacion/csharp/github-clones/MetodosMultiUso/Program.cs`
+- Combinación normal: `/home/jean_abraham/Proyectos/Programacion/csharp/github-clones/MetodosMultiUso/Config/runCommand.conf`
+
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+
 #    Como se muestra por defecto `ShowPrint.title`    #
 Por defecto el metodo `title`, se muestra asi:
     #    text    #

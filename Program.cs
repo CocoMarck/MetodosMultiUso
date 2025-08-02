@@ -255,6 +255,27 @@ public static class Program {
         ShowPrint.printAndReturn( TextUtil.onlyTheComment("#Comentario# Comentario\nTexto") );
         
         
+
+
+        // Seccion pruebas de Filtrar texto.
+        // TextUtil.filteredTextDictionary
+        foreach( var element in TextUtil.filteredTextDictionary() ) {
+            ShowPrint.printAndReturn( $"Key: {element.Key}. Value: {element.Value}" );
+        }
+        
+        // TextUtil.passTextFilter
+        ShowPrint.printAndReturn( $"{TextUtil.passTextFilter()}"  );
+        
+        // TextUtil.ignoreTextFilter
+        ShowPrint.printAndReturn( 
+         TextUtil.ignoreTextFilter( 
+            text: "Texto chido", 
+            filter: TextUtil.FILTER_ABC
+         )  
+        );
+        
+        
+        
         
         // log text, guardar
         File.WriteAllText( log_file_path, log_text );
