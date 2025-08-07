@@ -21,6 +21,15 @@ namespace MetodosMultiUso.Core {
         // Constantes
         public const string FILTER_ABC = "abcdefghijklmnñopqrstuvwxyz";
         public const string FILTER_NUMBER = "1234567890";
+        public static readonly Dictionary<char, int> DICT_ABC = new Dictionary<char, int>();
+        
+        // Constructor
+        static TextUtil(){
+            for( int index=0; index<FILTER_ABC.Length; index++ ){
+                char character = FILTER_ABC[index]; 
+                DICT_ABC.Add( character, index );
+            }
+        }
 
         // Leer archivo de texto
         // Por defecto solo se devuelve el texto pelon.
@@ -242,6 +251,63 @@ namespace MetodosMultiUso.Core {
             }
             
             return final_text;
+        }
+        
+        
+        
+        
+        /// Ordenar array de string por abecedario
+        public static string[] arrayAlphabet( string[] array ) {
+            // Ordenar cada letar del abecedario en un diccionario. `DICT_ABC`
+            
+            // Diccionario abc vacio. Para ordenar los textos por medio del abecedario
+            Dictionary<int, List<string> > dict_position = new Dictionary<int, List<string> >();
+            foreach( var element in DICT_ABC ){
+                List<string> list = new List<string>();
+                dict_position.Add( element.Value, list );
+            }
+            
+            // Textos
+            foreach( string text in array ) {
+                // Establecer texto para analizar. Texto con filtros, sin mayusculas y sin espacios.
+                string text_to_analize = text.Trim().ToLower();
+            
+                // Obtener posición del texto. Donde estara segun `DICT_ABC`
+                // Si no encuentra nadota en `DICT_ABC`, el texto se pondra al ultimo.
+                int position = DICT_ABC.Count-1;
+
+                for( int index=0; index<text_to_analize.Length; index++ ){ 
+                    char character = text_to_analize[index]; 
+                    if ( DICT_ABC.ContainsKey(character) ) {
+                        position = DICT_ABC[character];
+                        break;
+                    }
+                }
+                
+                // Agregar texto en posicion indicada
+                dict_position[position].Add(text);
+            }
+            
+            // Lista final
+            List<string> final_list = new List<string>();
+            foreach( var element in dict_position ){
+                final_list.AddRange( element.Value );
+            }
+            
+            // Array a retornar
+            string[] final_array = final_list.ToArray();
+            
+            return final_array;
+        }
+        
+        
+        
+        
+        /// Eliminar los items repetidos en un array
+        public static string[] arrayNotRepeatItem( string[] array ){
+            string[] final_array = {};
+            
+            return final_array;
         }
 
     }

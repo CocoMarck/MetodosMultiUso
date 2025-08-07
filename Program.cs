@@ -242,37 +242,55 @@ public static class Program {
         );
         
         // TextUtil.matixLineBreaks
+        ShowPrint.title("TextUtil.matrixLineBreaks");
         foreach( string line in TextUtil.matixLineBreaks() ) {
             ShowPrint.printAndReturn( line );
         }
+        ShowPrint.printAndReturn("\n");
         
         // TextUtil.separeText
+        ShowPrint.title("TextUtil.separeText");
         foreach( var element in TextUtil.separeText() ) {
             ShowPrint.printAndReturn( $"Key: {element.Key}. Value: {element.Value}" );
         }
+        ShowPrint.printAndReturn("\n");
         
         // TextUtil.onlyTheComment
+        ShowPrint.title( "TextUtil.onlyTheComment" );
         ShowPrint.printAndReturn( TextUtil.onlyTheComment("#Comentario# Comentario\nTexto") );
+        ShowPrint.printAndReturn( "\n" );
         
         
 
 
         // Seccion pruebas de Filtrar texto.
         // TextUtil.filteredTextDictionary
+        ShowPrint.title( "TextUtil.filteredTextDictionary" );
         foreach( var element in TextUtil.filteredTextDictionary() ) {
             ShowPrint.printAndReturn( $"Key: {element.Key}. Value: {element.Value}" );
         }
+        ShowPrint.printAndReturn("\n");
         
         // TextUtil.passTextFilter
-        ShowPrint.printAndReturn( $"{TextUtil.passTextFilter()}"  );
+        ShowPrint.title( "TextUtil.passTextFilter" );
+        ShowPrint.printAndReturn( $"{TextUtil.passTextFilter()}\n"  );
         
         // TextUtil.ignoreTextFilter
+        ShowPrint.title( "TextUtil.ignoreTextFilter" );
         ShowPrint.printAndReturn( 
          TextUtil.ignoreTextFilter( 
             text: "Texto chido", 
             filter: TextUtil.FILTER_ABC
-         )  
+         ) + "\n"  
         );
+        
+        // TextUtil.arrayAlphabet
+        ShowPrint.title( "TextUtil.arrayAlphabet" );
+        string[] for_array_alphabet = {"Volvo", "BMW", "Ford", "Mazda", "1@"};
+        string[] test_array_alphabet = TextUtil.arrayAlphabet( for_array_alphabet );
+        foreach( string item in test_array_alphabet ) {
+            ShowPrint.printAndReturn( item );
+        }
         
         
         
