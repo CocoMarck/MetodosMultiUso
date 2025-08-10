@@ -276,9 +276,18 @@ namespace MetodosMultiUso.Core {
                 // Si no encuentra nadota en `DICT_ABC`, el texto se pondra al ultimo.
                 int position = DICT_ABC.Count-1;
 
+                /*
                 for( int index=0; index<text_to_analize.Length; index++ ){ 
                     char character = text_to_analize[index]; 
                     if ( DICT_ABC.ContainsKey(character) ) {
+                        position = DICT_ABC[character];
+                        break;
+                    }
+                }
+                */
+                
+                foreach( char character in DICT_ABC.Keys ){
+                    if( text_to_analize.StartsWith( character.ToString() ) ){
                         position = DICT_ABC[character];
                         break;
                     }
@@ -305,9 +314,38 @@ namespace MetodosMultiUso.Core {
         
         /// Eliminar los items repetidos en un array
         public static string[] arrayNotRepeatItem( string[] array ){
-            string[] final_array = {};
+            List<string> new_list = new List<string>();
             
-            return final_array;
+            // Agregar los items que no coincidan con la nueva lista.
+            bool add_item = false;
+            foreach( string item in array ){
+                add_item = true;
+                foreach( string coincidence in new_list ){
+                    if (coincidence == item) {
+                        add_item = false;
+                        break;
+                    }
+                }
+                
+                if(add_item){
+                    new_list.Add(item);
+                }
+            }
+            
+            return new_list.ToArray();
+        }
+        
+        
+        
+        
+        // Detectar string si no hay nadota, devolver none.
+        public static string? textOrNone( string? text ) {
+            if ( string.IsNullOrEmpty(text) ) {
+                return null; 
+            }
+            else { 
+                return text;
+            }
         }
 
     }

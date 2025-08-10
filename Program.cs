@@ -238,7 +238,7 @@ public static class Program {
             TextUtil.ignoreComment( text:"Ejemplo # Comentario\nTexto\n# Chido") 
         );
         log_text += ShowPrint.printAndReturn( 
-            TextUtil.ignoreComment( text:run_command_text ) 
+            TextUtil.ignoreComment( text:run_command_text )  + "\n"
         );
         
         // TextUtil.matixLineBreaks
@@ -285,12 +285,28 @@ public static class Program {
         );
         
         // TextUtil.arrayAlphabet
-        ShowPrint.title( "TextUtil.arrayAlphabet" );
+        ShowPrint.title( "`TextUtil.arrayAlphabet`" );
         string[] for_array_alphabet = {"Volvo", "BMW", "Ford", "Mazda", "1@"};
         string[] test_array_alphabet = TextUtil.arrayAlphabet( for_array_alphabet );
         foreach( string item in test_array_alphabet ) {
             ShowPrint.printAndReturn( item );
         }
+        ShowPrint.printAndReturn( "\n" );
+        
+        // TextUtil.arrayNotRepeatItem
+        ShowPrint.title( "`TextUtil.arrayNotRepeatItem`" );
+        string[] items = {"hola", "hola", "adios", "hola", "adios"};
+        string[] not_repeat_item = TextUtil.arrayNotRepeatItem(items);
+        foreach( string i in not_repeat_item ) {
+            ShowPrint.printAndReturn(i);
+        }
+        ShowPrint.printAndReturn( "\n" );
+        
+        // TextUtil.textOrNone
+        ShowPrint.title("`TextUtil.textOrNone`");
+        ShowPrint.printAndReturn( TextUtil.textOrNone("Perro loco") );
+        ShowPrint.printAndReturn( TextUtil.textOrNone("") );
+        ShowPrint.printAndReturn( TextUtil.textOrNone(null) );
         
         
         
