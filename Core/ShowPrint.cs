@@ -51,7 +51,7 @@ namespace MetodosMultiUso.Core {
             if (console == true) {
                 Console.WriteLine( text_return );
             }
-            return text_return;
+            return text_return += "\n";
         }
         
         
