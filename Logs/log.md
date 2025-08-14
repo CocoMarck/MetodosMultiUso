@@ -124,3 +124,40 @@ Ejemplo
 Texto
 linux_terminal=x-terminal-emulator
 win_terminal=cmd.exe
+
+#    TextUtil.matrixLineBreaks    #Ejemplo
+Chido
+
+
+#    TextUtil.separeText    #Key: variable. Value: Valor
+
+
+#    TextUtil.onlyTheComment    #ComentarioComentario
+
+
+#    TextUtil.filteredTextDictionary    #Key: 0. Value: (H, False)
+Key: 1. Value: (o, False)
+Key: 2. Value: (l, False)
+Key: 3. Value: (a, False)
+Key: 4. Value: ( , False)
+Key: 5. Value: (2, True)
+
+
+#    TextUtil.passTextFilter    #True
+
+#    TextUtil.ignoreTextFilter    #Textochido
+
+#    `TextUtil.arrayAlphabet`    #- BMW
+- Ford
+- Mazda
+- Volvo
+- 1@
+
+
+#    `TextUtil.arrayNotRepeatItem`    #- hola
+- adios
+
+
+#    `TextUtil.textOrNone`    #- Perro loco
+- null
+- null

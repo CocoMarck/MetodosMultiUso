@@ -242,42 +242,42 @@ public static class Program {
         );
         
         // TextUtil.matixLineBreaks
-        ShowPrint.title("TextUtil.matrixLineBreaks");
+        log_text +=ShowPrint.title("TextUtil.matrixLineBreaks");
         foreach( string line in TextUtil.matixLineBreaks() ) {
-            ShowPrint.printAndReturn( line );
+            log_text += ShowPrint.printAndReturn( line );
         }
-        ShowPrint.printAndReturn("\n");
+        log_text += ShowPrint.printAndReturn("\n");
         
         // TextUtil.separeText
-        ShowPrint.title("TextUtil.separeText");
+        log_text += ShowPrint.title("TextUtil.separeText");
         foreach( var element in TextUtil.separeText() ) {
-            ShowPrint.printAndReturn( $"Key: {element.Key}. Value: {element.Value}" );
+            log_text += ShowPrint.printAndReturn( $"Key: {element.Key}. Value: {element.Value}" );
         }
-        ShowPrint.printAndReturn("\n");
+        log_text += ShowPrint.printAndReturn("\n");
         
         // TextUtil.onlyTheComment
-        ShowPrint.title( "TextUtil.onlyTheComment" );
-        ShowPrint.printAndReturn( TextUtil.onlyTheComment("#Comentario# Comentario\nTexto") );
-        ShowPrint.printAndReturn( "\n" );
+        log_text += ShowPrint.title( "TextUtil.onlyTheComment" );
+        log_text += ShowPrint.printAndReturn( TextUtil.onlyTheComment("#Comentario# Comentario\nTexto") );
+        log_text += ShowPrint.printAndReturn( "\n" );
         
         
 
 
         // Seccion pruebas de Filtrar texto.
         // TextUtil.filteredTextDictionary
-        ShowPrint.title( "TextUtil.filteredTextDictionary" );
+        log_text += ShowPrint.title( "TextUtil.filteredTextDictionary" );
         foreach( var element in TextUtil.filteredTextDictionary() ) {
-            ShowPrint.printAndReturn( $"Key: {element.Key}. Value: {element.Value}" );
+            log_text += ShowPrint.printAndReturn( $"Key: {element.Key}. Value: {element.Value}" );
         }
-        ShowPrint.printAndReturn("\n");
+        log_text += ShowPrint.printAndReturn("\n");
         
         // TextUtil.passTextFilter
-        ShowPrint.title( "TextUtil.passTextFilter" );
-        ShowPrint.printAndReturn( $"{TextUtil.passTextFilter()}\n"  );
+        log_text += ShowPrint.title( "TextUtil.passTextFilter" );
+        log_text += ShowPrint.printAndReturn( $"{TextUtil.passTextFilter()}\n"  );
         
         // TextUtil.ignoreTextFilter
-        ShowPrint.title( "TextUtil.ignoreTextFilter" );
-        ShowPrint.printAndReturn( 
+        log_text += ShowPrint.title( "TextUtil.ignoreTextFilter" );
+        log_text += ShowPrint.printAndReturn( 
          TextUtil.ignoreTextFilter( 
             text: "Texto chido", 
             filter: TextUtil.FILTER_ABC
@@ -285,28 +285,38 @@ public static class Program {
         );
         
         // TextUtil.arrayAlphabet
-        ShowPrint.title( "`TextUtil.arrayAlphabet`" );
+        log_text += ShowPrint.title( "`TextUtil.arrayAlphabet`" );
         string[] for_array_alphabet = {"Volvo", "BMW", "Ford", "Mazda", "1@"};
         string[] test_array_alphabet = TextUtil.arrayAlphabet( for_array_alphabet );
         foreach( string item in test_array_alphabet ) {
-            ShowPrint.printAndReturn( item );
+            log_text += ShowPrint.printAndReturn( $"- {item}" );
         }
-        ShowPrint.printAndReturn( "\n" );
+        log_text += ShowPrint.printAndReturn( "\n" );
         
         // TextUtil.arrayNotRepeatItem
-        ShowPrint.title( "`TextUtil.arrayNotRepeatItem`" );
+        log_text += ShowPrint.title( "`TextUtil.arrayNotRepeatItem`" );
         string[] items = {"hola", "hola", "adios", "hola", "adios"};
         string[] not_repeat_item = TextUtil.arrayNotRepeatItem(items);
         foreach( string i in not_repeat_item ) {
-            ShowPrint.printAndReturn(i);
+            log_text += ShowPrint.printAndReturn( $"- {i}");
         }
-        ShowPrint.printAndReturn( "\n" );
+        log_text += ShowPrint.printAndReturn( "\n" );
         
         // TextUtil.textOrNone
-        ShowPrint.title("`TextUtil.textOrNone`");
-        ShowPrint.printAndReturn( TextUtil.textOrNone("Perro loco") );
-        ShowPrint.printAndReturn( TextUtil.textOrNone("") );
-        ShowPrint.printAndReturn( TextUtil.textOrNone(null) );
+        log_text += ShowPrint.title("`TextUtil.textOrNone`");
+        string?[] array_text_or_none = {
+            TextUtil.textOrNone("Perro loco"),
+            TextUtil.textOrNone(""),
+            TextUtil.textOrNone(null)
+        };
+        
+        foreach( string? text_or_none in array_text_or_none ){
+            if (text_or_none == null) {
+                log_text += ShowPrint.printAndReturn( "- null" );
+            } else {
+                log_text += ShowPrint.printAndReturn( "- " + text_or_none );
+            }
+        }
         
         
         
