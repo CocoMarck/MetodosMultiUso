@@ -133,10 +133,12 @@ dictionary:
 
 #    `TextUtil.ignoreComment`    #
 
+```
 Ejemplo 
 Texto
 linux_terminal=x-terminal-emulator
 win_terminal=cmd.exe
+```
 
 #    TextUtil.matrixLineBreaks    #
 Ejemplo
@@ -183,3 +185,29 @@ Textochido
 - Perro loco
 - null
 - null
+
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+#    TimeUtil    #
+**TIME_VALUES**
+- millisecond: 1
+- second: 1000
+- minute: 60000
+- hour: 3600000
+- day: 86400000
+
+
+**TIME_MULTIPLER**
+- millisecond: 1
+- second: 1000
+- minute: 60
+- hour: 60
+- day: 24
+
+
+**DATETIME_FORMAT:** `yyyy-MM-ddTHH:mm:ss`
+
+
+##    getDecimalTime    ##
+`60` minute a hour son: `1`

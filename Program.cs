@@ -234,12 +234,16 @@ public static class Program {
         
         // TextUtil.ignoreComment
         log_text += ShowPrint.printAndReturn( ShowPrint.title("`TextUtil.ignoreComment`"), console:false );
+        log_text += ShowPrint.printAndReturn( "```" );
+
         log_text += ShowPrint.printAndReturn( 
             TextUtil.ignoreComment( text:"Ejemplo # Comentario\nTexto\n# Chido") 
         );
         log_text += ShowPrint.printAndReturn( 
-            TextUtil.ignoreComment( text:run_command_text )  + "\n"
+            TextUtil.ignoreComment( text:run_command_text )
         );
+
+        log_text += ShowPrint.printAndReturn( "```\n" );
         
         // TextUtil.matixLineBreaks
         log_text +=ShowPrint.title("TextUtil.matrixLineBreaks");
@@ -317,6 +321,36 @@ public static class Program {
                 log_text += ShowPrint.printAndReturn( "- " + text_or_none );
             }
         }
+        log_text += ShowPrint.separator();
+        
+        
+        
+        // TimeUtil
+        log_text += ShowPrint.title("TimeUtil");
+
+        log_text +=  ShowPrint.printAndReturn( "**TIME_VALUES**");
+        foreach( var element in TimeUtil.TIME_VALUES ){
+            log_text += ShowPrint.printAndReturn( $"- {element.Key}: {element.Value}" );
+        }
+        log_text += ShowPrint.printAndReturn( "\n" );
+
+        log_text +=  ShowPrint.printAndReturn( "**TIME_MULTIPLER**" );
+        foreach( var element in TimeUtil.TIME_MULTIPLER ){
+            log_text += ShowPrint.printAndReturn( $"- {element.Key}: {element.Value}" );
+        }
+        log_text += ShowPrint.printAndReturn( "\n" );
+        
+        log_text += ShowPrint.printAndReturn( $"**DATETIME_FORMAT:** `{TimeUtil.DATETIME_FORMAT}`" );
+        log_text += ShowPrint.printAndReturn( "\n" );
+        
+        log_text += ShowPrint.title("getDecimalTime", "##");
+        int number_for_get_time = 60;
+        string type_of_number = "minute";
+        string convert_to = "hour";
+        log_text += ShowPrint.printAndReturn(
+         $"`{number_for_get_time}` {type_of_number} a {convert_to} son: " +
+         $"`{TimeUtil.getDecimalTime( number_for_get_time, type_of_number, convert_to )}`"
+        );
         
         
         
