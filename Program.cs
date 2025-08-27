@@ -351,7 +351,7 @@ public static class Program {
          $"`{number_for_get_time}` {type_of_number} a {convert_to} son: " +
          $"`{TimeUtil.getDecimalTime( number_for_get_time, type_of_number, convert_to )}`"
         );
-        
+        ShowPrint.printAndReturn( TimeUtil.getDateTime() );
         
         
         

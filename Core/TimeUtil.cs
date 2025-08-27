@@ -1,4 +1,5 @@
-using System.Collections.Generic;
+using System.Collections.Generic; // Para Dict y List
+using static System.Console; // Para datetime
 
 namespace MetodosMultiUso.Core {
     public static class TimeUtil {
@@ -77,6 +78,19 @@ namespace MetodosMultiUso.Core {
             
             // Retornar
             return final_number;
+        }
+        
+        
+        
+        
+        /// Obtener tiempo actual
+        public static string getDateTime() {
+            DateTime datetime = DateTime.Now;
+            string datetime_text = (
+             $"{datetime.Year}-{datetime.Month}-{datetime.Day}T" +
+             $"{datetime.Hour}:{datetime.Minute}:{datetime.Second}"
+            );
+            return datetime_text;
         }
     
     
