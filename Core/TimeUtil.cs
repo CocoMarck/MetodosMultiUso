@@ -58,7 +58,7 @@ namespace MetodosMultiUso.Core {
         public static decimal getDecimalTime( 
          int number, string type_of_value = "minute", string convert_to = "hour" 
         ) {
-            decimal final_number = Convert.ToDecimal(number);
+            decimal final_number = 0;
             
             // Los tipo de valor deben existir en el diccionario TIME_VALUES
             if (TIME_VALUES.ContainsKey(type_of_value) && TIME_VALUES.ContainsKey(convert_to)){
@@ -66,7 +66,7 @@ namespace MetodosMultiUso.Core {
                 
                 if ( TIME_VALUES[type_of_value] == TIME_VALUES[convert_to] ){
                     // No hacer nadota
-                    final_number = final_number;
+                    final_number = Convert.ToDecimal(number);
                 } else {
                     // Dividir, acción que convertira el valor al indicado.
                     final_number = (
@@ -79,6 +79,18 @@ namespace MetodosMultiUso.Core {
             // Retornar
             return final_number;
         }
+
+
+
+
+        /// Establecer texto de tiempo formateado.
+        public static string getDateTimeFormatted( DateTime datetime ) {
+            string datetime_text = (
+                $"{datetime.Year}-{datetime.Month}-{datetime.Day}T" +
+                $"{datetime.Hour}:{datetime.Minute}:{datetime.Second}"
+            );
+            return datetime_text;
+        }
         
         
         
@@ -86,10 +98,7 @@ namespace MetodosMultiUso.Core {
         /// Obtener tiempo actual
         public static string getDateTime() {
             DateTime datetime = DateTime.Now;
-            string datetime_text = (
-             $"{datetime.Year}-{datetime.Month}-{datetime.Day}T" +
-             $"{datetime.Hour}:{datetime.Minute}:{datetime.Second}"
-            );
+            string datetime_text = getDateTimeFormatted( datetime );
             return datetime_text;
         }
     
