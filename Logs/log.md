@@ -86,12 +86,12 @@ El metodo que se uso para saber el OS, es `SystemUtil.getSystem`.
 #    Mostrar resolución de pantalla    #
 
 La resolución de pantalla, indica como se mostraran las imagenes, la cantidad de pixeles que se podran mostrar.
-La resolucion de pantalla es: 1920x1080
+La resolucion de pantalla es: 0x0
 
 #    Mostrar servidor grafico    #
 
 El servidor grafico, es el que dibuja todo en pantalla, muy bonito.
-El servidor grafico es: `x11`
+El servidor grafico es: `wayland`
 
 
 --------------------------------------------------------------------------------------------------------------------------------
@@ -211,3 +211,6 @@ Textochido
 
 ##    getDecimalTime    ##
 `60` minute a hour son: `1`
+
+- La fecha actual es: `2025-09-02T18:07:12`
+- Primer dia del mes: `2025-09-01T00:00:00`

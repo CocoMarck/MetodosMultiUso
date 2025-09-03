@@ -85,9 +85,15 @@ namespace MetodosMultiUso.Core {
 
         /// Establecer texto de tiempo formateado.
         public static string getDateTimeFormatted( DateTime datetime ) {
+            string month_text = datetime.Month.ToString("D2");
+            string day_text = datetime.Day.ToString("D2");
+            string hour_text = datetime.Hour.ToString("D2");
+            string minute_text = datetime.Minute.ToString("D2");
+            string second_text = datetime.Second.ToString("D2");
+
             string datetime_text = (
-                $"{datetime.Year}-{datetime.Month}-{datetime.Day}T" +
-                $"{datetime.Hour}:{datetime.Minute}:{datetime.Second}"
+             $"{datetime.Year}-{month_text}-{day_text}T" +
+             $"{hour_text}:{minute_text}:{second_text}"
             );
             return datetime_text;
         }
@@ -101,6 +107,37 @@ namespace MetodosMultiUso.Core {
             string datetime_text = getDateTimeFormatted( datetime );
             return datetime_text;
         }
+
+
+        // Obtener datetime de dia acutal
+        public static DateTime currentDateTime() {
+            return DateTime.Now;
+        }
+
+
+        /// Obtener dia inicial de un mes
+        public static string getFirstDayOfTheMonth( DateTime? datetime = null ) {
+            /*
+            Ayuda:
+            ```
+            type func( type param? = null )
+                type final_value = param ?? DEFAULT_VALUE;
+            ```
+            */
+
+            // Agregar parametro, si no es nulo, de lo contrario poner fecha actual.
+            DateTime dt = datetime ?? DateTime.Now;
+
+            // Establecer tiempo correctamente
+            dt = dt.AddDays( -dt.Day +1 ).AddHours( -dt.Hour ).AddMinutes( -dt.Minute ).AddSeconds( -dt.Second );
+
+            // Tiempo en string estructurado
+            return getDateTimeFormatted( dt );
+        }
+
+
+
+        /// Obtener dia final del mes
     
     
     

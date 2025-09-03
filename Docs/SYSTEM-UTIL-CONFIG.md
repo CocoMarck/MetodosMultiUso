@@ -2,6 +2,8 @@
 
 `2025-07-22`: Este modulo actualmetne tiene warnings, hay que lograr quitarlos (mejorando el código).
 
+`2025-09-02`: Hacer que los metodos no devuelvan nulo, dan warnings.
+
 # Leer texto, ignorando comentarios:
 ```csharp
 string text_file = TextUtil.ignoreComment(
