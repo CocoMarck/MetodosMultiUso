@@ -351,10 +351,13 @@ public static class Program {
          $"`{number_for_get_time}` {type_of_number} a {convert_to} son: " +
          $"`{TimeUtil.getDecimalTime( number_for_get_time, type_of_number, convert_to )}`"
         );
+        log_text += ShowPrint.printAndReturn( "\n" );
+
+        log_text += ShowPrint.title( "`getDateTime` FirstDay and LastDay OfTheMonth", "##" );
         log_text += ShowPrint.printAndReturn(
-            "\n" +
             $"- La fecha actual es: `{TimeUtil.getDateTime()}`\n" +
-            $"- Primer dia del mes: `{TimeUtil.getFirstDayOfTheMonth()}`"
+            $"- Primer dia del mes: `{TimeUtil.getFirstDayOfTheMonth()}`\n" +
+            $"- Ultimo dia del mes: `{TimeUtil.getLastDayOfTheMonth()}`"
         );
         
         

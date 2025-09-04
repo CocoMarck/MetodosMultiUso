@@ -138,6 +138,17 @@ namespace MetodosMultiUso.Core {
 
 
         /// Obtener dia final del mes
+        public static string getLastDayOfTheMonth( DateTime? datetime=null ){
+            DateTime dt = datetime ?? DateTime.Now;
+            int daysInMonth = DateTime.DaysInMonth(dt.Year, dt.Month);
+
+            // Establecer timepo correctamente. Algo así `2025-09-30T23:59:59`
+            dt = dt.AddDays( daysInMonth -dt.Day ).AddHours( 23 -dt.Hour ).AddMinutes( 59 -dt.Minute).AddSeconds( 59 -dt.Second );
+
+
+            // Tiempo en string estrucutado tipo ISO
+            return getDateTimeFormatted(dt);
+        }
     
     
     

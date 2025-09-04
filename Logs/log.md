@@ -212,5 +212,8 @@ Textochido
 ##    getDecimalTime    ##
 `60` minute a hour son: `1`
 
-- La fecha actual es: `2025-09-02T18:07:12`
+
+##    `getDateTime` FirstDay and LastDay OfTheMonth    ##
+- La fecha actual es: `2025-09-04T01:05:16`
 - Primer dia del mes: `2025-09-01T00:00:00`
+- Ultimo dia del mes: `2025-09-30T23:59:59`

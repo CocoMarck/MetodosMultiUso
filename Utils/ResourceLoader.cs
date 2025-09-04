@@ -74,11 +74,11 @@ namespace MetodosMultiUso.Utils {
             return Path.Combine( resource_dir, file );
         } 
         
-        public string? combineConfigFile(string file) {
+        public string combineConfigFile(string file) {
             return Path.Combine( config_dir, file );
         }
         
-        public string? combineLogFile(string file) {
+        public string combineLogFile(string file) {
             return Path.Combine( logs_dir, file );
         }
         /*
