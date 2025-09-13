@@ -94,9 +94,10 @@ namespace MetodosMultiUso.Core
                     command = $"{TERMINAL_NAME} /K {command} & pause";
                 } else {
                     command = (
-                        $"{TERMINAL_NAME} -hold -e bash -c " +
-                        $"'{command}; read; exit'"
+                     $"{TERMINAL_NAME} --hold -e " +
+                     $"bash -c \"{command}; read; exit\""
                     );
+                    //command = $"{TERMINAL_NAME} --hold -e bash -c \"{command}; read; exit\"";
                 }
 
                 // Mostrar comando
@@ -191,7 +192,7 @@ namespace MetodosMultiUso.Core
         
         /// Obtener resolución de pantalla actual en el OS
         public static int[] getDisplayResolution() {
-            int[] width_height = {0,0};
+            int[] width_height = {1280,720};
 
             string graphical_server = getGraphicalServer();
             string character_separator = "x";

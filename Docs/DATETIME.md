@@ -23,3 +23,6 @@ public static string getDateTimeFormatted( DateTime datetime ) {
     return datetime_text;
 }
 ```
+
+
+[tutorial get last day of the month](https://makolyte.com/csharp-get-the-last-day-of-the-month/)

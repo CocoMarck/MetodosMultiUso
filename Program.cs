@@ -138,16 +138,19 @@ public static class Program {
             ShowPrint.title( "Usando `SystemUtil`", console:false ) + "\n" +
           
             $"El sistema operativo que estas usando es: `{system_name}`.\n" +
-            "El metodo que se uso para saber el OS, es `SystemUtil.getSystem`."
+            "El metodo que se uso para saber el OS, es `SystemUtil.getSystem`.\n"
         );
         
-        ShowPrint.input( 
+        log_text += ShowPrint.input(
             "Ahora vamos a abrir una terminal\n"  +
             "Preciona enter para ver la terminal..."
         );
         log_text += ShowPrint.printAndReturn(
-            SystemUtil.runCommand( command:"neofetch", external:true ), console:false
+            SystemUtil.runCommand( command:"fastfetch", external:false ), console:false
         );
+        Task.Run(() => {
+            SystemUtil.runCommand( command:"fastfetch", external:true );
+        });
         
         log_text += ShowPrint.printAndReturn( ShowPrint.separator(), console:false );
         
@@ -353,11 +356,13 @@ public static class Program {
         );
         log_text += ShowPrint.printAndReturn( "\n" );
 
-        log_text += ShowPrint.title( "`getDateTime` FirstDay and LastDay OfTheMonth", "##" );
+        log_text += ShowPrint.title( "`getCurrentDateTime` FirstDay and LastDay OfTheMonth", "##" );
         log_text += ShowPrint.printAndReturn(
-            $"- La fecha actual es: `{TimeUtil.getDateTime()}`\n" +
+            $"- La fecha actual es: `{TimeUtil.getCurrentDateTime()}`\n" +
             $"- Primer dia del mes: `{TimeUtil.getFirstDayOfTheMonth()}`\n" +
-            $"- Ultimo dia del mes: `{TimeUtil.getLastDayOfTheMonth()}`"
+            $"- Ultimo dia del mes: `{TimeUtil.getLastDayOfTheMonth()}`\n" +
+            $"- Solo la fecha:      `" + TimeUtil.getDateFromFormattedDateTime() + "`\n" +
+            $"- Solo la hora:       `" + TimeUtil.getTimeFromFormattedDateTime() + "`"
         );
         
         

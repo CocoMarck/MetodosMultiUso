@@ -102,7 +102,7 @@ namespace MetodosMultiUso.Core {
         
         
         /// Obtener tiempo actual
-        public static string getDateTime() {
+        public static string getCurrentDateTime() {
             DateTime datetime = DateTime.Now;
             string datetime_text = getDateTimeFormatted( datetime );
             return datetime_text;
@@ -148,6 +148,34 @@ namespace MetodosMultiUso.Core {
 
             // Tiempo en string estrucutado tipo ISO
             return getDateTimeFormatted(dt);
+        }
+
+
+
+
+        /// Separar tiempo y fecha, de un datatime formateado.
+        public static string[] separeFormattedDateTime( string? datetime_formatted=null ){
+            string dtf = datetime_formatted ?? getCurrentDateTime();
+
+            // Texto a separar
+            string[] date_and_time = dtf.Split('T');
+
+            // Determinar valor a retornar
+            return date_and_time;
+        }
+
+        public static string getDateFromFormattedDateTime(
+            string? datetime_formatted=null
+        ){
+            string[] separe_datetime = separeFormattedDateTime( datetime_formatted );
+            return separe_datetime[0];
+        }
+
+        public static string getTimeFromFormattedDateTime(
+            string? datetime_formatted=null
+        ){
+            string[] separe_datetime = separeFormattedDateTime( datetime_formatted );
+            return separe_datetime[1];
         }
     
     
