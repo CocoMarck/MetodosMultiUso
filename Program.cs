@@ -173,7 +173,7 @@ public static class Program {
         log_text += ShowPrint.printAndReturn(
             "La resolución de pantalla, indica como se mostraran las imagenes, la cantidad de pixeles " +
             "que se podran mostrar.\n" +
-            $"La resolucion de pantalla es: {display[0]}x{display[1]}" 
+            $"La resolucion de pantalla es: `{display[0]}x{display[1]}`"
         );
         log_text += ShowPrint.printAndReturn();
         

@@ -87,7 +87,7 @@ fastfetch
 #    Mostrar resolución de pantalla    #
 
 La resolución de pantalla, indica como se mostraran las imagenes, la cantidad de pixeles que se podran mostrar.
-La resolucion de pantalla es: 1280x720
+La resolucion de pantalla es: `1920x1080`
 
 #    Mostrar servidor grafico    #
 
@@ -215,8 +215,8 @@ Textochido
 
 
 ##    `getCurrentDateTime` FirstDay and LastDay OfTheMonth    ##
-- La fecha actual es: `2025-09-12T21:20:22`
+- La fecha actual es: `2025-09-19T00:13:50`
 - Primer dia del mes: `2025-09-01T00:00:00`
 - Ultimo dia del mes: `2025-09-30T23:59:59`
-- Solo la fecha:      `2025-09-12`
-- Solo la hora:       `21:20:22`
+- Solo la fecha:      `2025-09-19`
+- Solo la hora:       `00:13:50`

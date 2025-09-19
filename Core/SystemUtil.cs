@@ -192,7 +192,7 @@ namespace MetodosMultiUso.Core
         
         /// Obtener resolución de pantalla actual en el OS
         public static int[] getDisplayResolution() {
-            int[] width_height = {1280,720};
+            int[] width_height = {1,16};
 
             string graphical_server = getGraphicalServer();
             string character_separator = "x";
@@ -205,7 +205,7 @@ namespace MetodosMultiUso.Core
                 width_height[1] = GetSystemMetrics(1);
                 #endif
             } 
-            else if ( graphical_server == "x11") {
+            else if ( graphical_server == "x11" || graphical_server == "wayland") {
                 // Actualmente nomas jala para x11. 
                 // Despues crear func para detectar si se usa Wayland.
                 output = commandOutput( "xrandr | grep '*' | awk '{print $1}'" );
