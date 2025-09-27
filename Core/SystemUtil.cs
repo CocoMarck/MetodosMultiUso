@@ -44,6 +44,23 @@ namespace MetodosMultiUso.Core
             
             return os;
         }
+
+
+
+
+        /// Obtener texto de argumentos para ejecutar comando
+        public static string GetArgumentsForCommand( string? system=null, string command="" ) {
+            string final_system = system ?? getSystem();
+
+            string arguments;
+            if (final_system == "win"){
+                arguments = $"/C \"{command}\"";
+            } else {
+                arguments = $"-c \"{command}\"";
+            }
+
+            return arguments;
+        }
         
         
         
@@ -103,27 +120,19 @@ namespace MetodosMultiUso.Core
                 // Mostrar comando
                 Console.WriteLine( command );
             }
-            string arguments = "-c \" " + command + " \"";
+            string arguments = GetArgumentsForCommand( system:current_os, command:command );
             
             
             // Determinar si hacer que ProcessStartInfo devuelve o no la salida del comando.
             // Si no devuelve salida, el resultado se ve en la terminal.
-            bool redirect_standard_output = true;
-            bool redirect_standard_error = true;
-            if ( shell_execute == true ) {
-                // Evita que se se ejecute en segundo plano.
-                redirect_standard_output = false;
-                redirect_standard_error = false;
-            }
-            
             
             // Ejecutar comando
             ProcessStartInfo startInfo = new ProcessStartInfo() {
                 Arguments = arguments,
                 UseShellExecute = shell_execute,
-                RedirectStandardOutput = redirect_standard_output,
-                RedirectStandardError = redirect_standard_error,
-                CreateNoWindow = true
+                RedirectStandardOutput = !shell_execute,
+                RedirectStandardError = !shell_execute,
+                CreateNoWindow = shell_execute
             };
             
             startInfo.FileName = getShellName();
@@ -160,7 +169,8 @@ namespace MetodosMultiUso.Core
         /// <summary>Obtener salida (puro string) de comando ejecutado</summary>
         /// <returns>string</returns>
         public static string commandOutput( string command="" ) {
-            string arguments = "-c \" " + command + " \"";
+            string arguments = GetArgumentsForCommand( command:command );
+
             Process process = new Process();
             process.StartInfo.Arguments = arguments;
             process.StartInfo.UseShellExecute = false;

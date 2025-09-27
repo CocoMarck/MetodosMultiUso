@@ -364,6 +364,23 @@ public static class Program {
             $"- Solo la fecha:      `" + TimeUtil.getDateFromFormattedDateTime() + "`\n" +
             $"- Solo la hora:       `" + TimeUtil.getTimeFromFormattedDateTime() + "`"
         );
+        log_text += ShowPrint.separator();
+
+
+        // Pantalla
+        string[] displaySides = {"width", "height"};
+        log_text += ShowPrint.title( "DisplayScaleNumber.GetScaledNumber" );
+        foreach( string side in displaySides ){
+            log_text += ShowPrint.printAndReturn(
+                $"- La mitad del {side} de pantalla es: " +
+                $"`{DisplayScaleNumber.GetScaledNumber( multiplier:(float)0.5, based:side )}`"
+            );
+        }
+
+        float[] scaledDisplay = DisplayScaleNumber.GetScaledNumbers( multiplier:(float)0.5 );
+        log_text += ShowPrint.printAndReturn(
+         $"- Ancho y alto: `{scaledDisplay[0]}x{scaledDisplay[1]}`"
+        );
         
         
         

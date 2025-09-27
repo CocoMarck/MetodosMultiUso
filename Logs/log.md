@@ -215,8 +215,16 @@ Textochido
 
 
 ##    `getCurrentDateTime` FirstDay and LastDay OfTheMonth    ##
-- La fecha actual es: `2025-09-19T00:13:50`
+- La fecha actual es: `2025-09-27T02:54:35`
 - Primer dia del mes: `2025-09-01T00:00:00`
 - Ultimo dia del mes: `2025-09-30T23:59:59`
-- Solo la fecha:      `2025-09-19`
-- Solo la hora:       `00:13:50`
+- Solo la fecha:      `2025-09-27`
+- Solo la hora:       `02:54:35`
+
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+#    DisplayScaleNumber.GetScaledNumber    #
+- La mitad del width de pantalla es: `960`
+- La mitad del height de pantalla es: `540`
+- Ancho y alto: `960x540`
