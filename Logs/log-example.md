@@ -215,11 +215,11 @@ Textochido
 
 
 ##    `getCurrentDateTime` FirstDay and LastDay OfTheMonth    ##
-- La fecha actual es: `2025-09-27T02:54:35`
-- Primer dia del mes: `2025-09-01T00:00:00`
-- Ultimo dia del mes: `2025-09-30T23:59:59`
-- Solo la fecha:      `2025-09-27`
-- Solo la hora:       `02:54:35`
+- La fecha actual es: `2026-05-17T09:22:14`
+- Primer dia del mes: `2026-05-01T00:00:00`
+- Ultimo dia del mes: `2026-05-31T23:59:59`
+- Solo la fecha:      `2026-05-17`
+- Solo la hora:       `09:22:14`
 
 
 --------------------------------------------------------------------------------------------------------------------------------
